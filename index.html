@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&family=Outfit:wght@400;500;600;700&family=Russo+One&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Blog</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/small/64/ffffff/hand-with-pen.png">
+</head>
+<body class="font-[Outfit]">
+    <!-- HEADER -->
+    <header x-data="{mobilenavOpen: false}" class="md:flex items-center justify-between bg-gray-200 h-20 [&>*]:px-8 text-black font-bold sticky top-0 z-50">
+        <div class="flex items-center justify-between h-20">
+            <logo class="logo">
+                <a class="flex items-center gap-1" href="index.html">
+                    <img class="max-h-10" src="https://img.icons8.com/small/64/000000/hand-with-pen.png" alt="hand-with-pen"/>
+                    <span class="">CSBLOG</span>
+                </a>
+            </logo>
+            <mobileicon class="md:hidden">
+                <a @click="mobilenavOpen = ! mobilenavOpen" class="w-12 h-12 flex items-center justify-center bg-gray-500 hover:bg-gray-700 rounded-lg">
+                    <img x-show="!mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png" alt="menu"/>
+                    <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png" alt="menu"/>
+                </a>
+            </mobileicon>
+        </div>
+        <nav x-show="mobilenavOpen" x-cloak 
+        class="md:!block bg-gray-200 w-screen h-screen md:w-auto md:h-auto -mt-20 md:mt-0 absolute md:relative z-[-1]"
+        x-transition:enter="duration-300 ease-out"
+            x-transition:enter-start="opacity-0 -translate-y-5 scale-96"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="duration-200 ease-in"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-100 -translate-y-5 scale-96"
+        >
+            <ul class="flex items-center flex-col md:flex-row gap-6 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0 navItems">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Create Post</a></li>
+                <li x-data="{ openDropDown: false, toggle(){this.openDropDown = ! this.openDropDown} } " class="relative">
+                    <a @click="toggle()" @click.away="openDropDown = false" class="cursor-pointer select-none">
+                        <img class="w-8 h-8 rounded-full" src="/assets/images/MyProfilePic.jpg" alt="">
+                        <span>John Doe</span>
+                        <img x-bind:class="openDropDown && 'rotate-180 duration-300' " class="w-4 ml-1.5 pt-1 hover:text-white" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="">
+                    </a>
+
+                    <!-- Drop Down Menu -->
+                    <div x-show="openDropDown" x-cloak 
+                        class="absolute bg-gray-200 text-black p-2 shadow rounded-lg w-40 right-0 z-20"
+                        x-transition:enter="duration-300 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-4 scale-90"
+                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave="duration-200 ease-in"
+                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave-end="opacity-100 -translate-y-4 scale-90"
+                    >
+                        <ul class="navItems [&>li>a]:justify-end">
+                            <li><a href="">My Profile</a></li>
+                            <li><a href="">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <hero class="grid bg-gray-700 text-center text-white z-10 relative bg-cover bg-[url('/assets/images/unsplash_1.jpg')]">
+        <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-30 w-full h-full"></div>
+        <div class="col-start-1 row-start-1 px-8 py-16 md:px-10 md:py-20 w-full">
+            <h1 class="textBlip">Technology</h1>
+            <p class="text-lg font-bold md:px-40 pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis 
+                laudantium voluptatibus eligendi.
+            </p>
+        </div>
+    </hero>
+    <!-- CONTENT -->
+    <content x-data="{mobileSidebarOpen: false}" class="grid grid-cols-3 max-w-7xl mx-auto mt-10">
+        <mobileSideBarNav class="md:hidden col-span-full mx-auto mb-6 z-10 relative">
+            <a @click="mobileSidebarOpen = ! mobileSidebarOpen" class="flex item-center cursor-pointer select-none font-bold p-3 hover:bg-gray-200 rounded-lg">
+                <span>Categories</span>
+                <img x-bind:class="mobileSidebarOpen && 'rotate-180 duration-300' " class="w-4 ml-1.5 pt-1" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="">
+            </a>
+        </mobileSideBarNav>
+        <!-- ASIDE -->
+        <aside 
+            x-show="mobileSidebarOpen" x-cloak
+            class="md:!block col-span-full md:col-span-1 mx-[10%] md:mr-[20%] order-1 md:order-2"
+            x-transition:enter="duration-300 ease-out"
+            x-transition:enter-start="opacity-0 -mt-70"
+            x-transition:enter-end="opacity-100 mt-0"
+            x-transition:leave="duration-300 ease-in"
+            x-transition:leave-start="opacity-100 mt-0"
+            x-transition:leave-end="opacity-0 -m-70"
+        >
+            <section class="flex flex-col py-4">
+                <div class="searchForm mb-4">
+                    <input class="p-2 text-md" placeholder="Search..." type="text" name="" id="q">
+                </div>
+                <h2 class="mb-4">Categories</h2>
+                <div class="bg-gray-700 grid text-center mb-5 text-white bg-[url('/assets/images/banner1.jpg')] bg-cover relative">
+                    <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-30 w-full h-full"></div>
+                    <div class="col-start-1 row-span-1 px-4 py-8">
+                        <a href=""><span class="font-bold">Culture</span></a>
+                    </div>
+                </div>
+                
+                <div class=" bg-gray-700 grid text-center mb-5 text-white bg-[url('/assets/images/banner7.jpg')] bg-cover relative">
+                    <div class="col-start-1 row-start-1 bg-gray-800 bg-opacity-30 w-full h-full"></div>
+                    <div class="col-start-1 row-span-1 px-4 py-8">
+                        <a href=""><span class="font-bold">Sport</span></a>
+                    </div>
+                </div>
+                <div class=" bg-gray-800 grid text-center mb-5 text-white bg-[url('/assets/images/banner8.jpg')] bg-cover relative">
+                    <div class="col-start-1 row-start-1 bg-gray-900 bg-opacity-30 w-full h-full"></div>
+                    <div class="col-start-1 row-span-1 px-4 py-8">
+                        <a href=""><span class="font-bold">Technology</span></a>
+                    </div>
+                </div>
+
+            </section>
+            <section class="flex flex-col p-4 mb-5 bg-gray-100">
+                <h2 class="mb-3">Top Posts</h2>
+                <div class="grid text-center mb-4">
+                    <ul class="">
+                        <li class="flex item-center justify-between">
+                            <span class="text-2xl md:text-3xl font-bold text-gray-800">1</span>
+                            <div class="flex flex-col p-2 pt-0 postTitle">
+                                <a href="post_details.html">
+                                    <p class="text-gray-900 text-start pl-2 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </a>
+                                <span class="text-start pl-2 text-small text-gray-600">John Doe - 10/12/2023</span>
+                            </div>
+                        </li>
+
+                        <li class="flex item-center justify-between">
+                            <span class="text-2xl md:text-3xl font-bold text-gray-800">2</span>
+                            <div class="flex flex-col p-2 pt-0 postTitle">
+                                <a href="post_details.html">
+                                    <p class="text-gray-900 text-start pl-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </a>
+                                <span class="text-start pl-2 text-small text-gray-600">John Doe - 17/12/2023</span>
+                            </div>
+                        </li>
+                        <li class="flex item-center justify-between">
+                            <span class="text-2xl md:text-3xl font-bold text-gray-800">3</span>
+                            <div class="flex flex-col p-2 pt-0 postTitle">
+                                <a href="post_details.html">
+                                    <p class="text-gray-900 text-start pl-2 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                </a>
+                                <span class="text-start pl-2 text-small text-gray-600">John Doe - 17/12/2023</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+        </aside>
+        <!-- MAIN ARTICLE -->
+        <main class="col-span-full md:col-span-2 mx-[5%] md:mx-[10%] order-2">
+            <div class="grid col-grid-1 md:grid-cols-2 gap-6 py-5">
+                <div class="postCard bg-gray-100">
+                    <a href="post_details.html">
+                        <img class="bg-cover" src="assets/images/posts/1.jpg" alt="">
+                    </a>
+                    <div class="p-4 pb-6">
+                        <div class="text-gray-500">
+                            <span>FOOD, TRAVEL</span> - <span>DEC 17, 2023</span>
+                        </div>
+                        <a href="#" class="postTitle font-bold text-lg hover:text-gray-800 pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                        <p class="text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, sit alias. Illo neque placeat at 
+                            numquam consequatur deserunt consectetur consequuntur.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="postCard bg-gray-100">
+                    <a href="post_details.html">
+                        <img class="bg-cover" src="assets/images/posts/2.jpg" alt="">
+                    </a>
+                    <div class="p-4 pb-6">
+                        <div class="text-gray-500">
+                            <span>FOOD, TRAVEL</span> - <span>DEC 17, 2023</span>
+                        </div>
+                        <a href="#" class="postTitle font-bold text-lg hover:text-gray-800 pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                        <p class="text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, sit alias. Illo neque placeat at 
+                            numquam consequatur deserunt consectetur consequuntur.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="postCard bg-gray-100">
+                    <a href="post_details.html">
+                        <img class="bg-cover" src="assets/images/posts/3.jpg" alt="">
+                    </a>
+                    <div class="p-4 pb-6">
+                        <div class="text-gray-500">
+                            <span>FOOD, TRAVEL</span> - <span>DEC 17, 2023</span>
+                        </div>
+                        <a href="#" class="postTitle font-bold text-lg hover:text-gray-800 pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                        <p class="text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, sit alias. Illo neque placeat at 
+                            numquam consequatur deserunt consectetur consequuntur.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="postCard bg-gray-100">
+                    <a href="post_details.html">
+                        <img class="bg-cover" src="assets/images/posts/4.jpg" alt="">
+                    </a>
+                    <div class="p-4 pb-6">
+                        <div class="text-gray-500">
+                            <span>FOOD, TRAVEL</span> - <span>DEC 17, 2023</span>
+                        </div>
+                        <a href="#" class="postTitle font-bold text-lg hover:text-gray-800 pb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                        <p class="text-gray-500">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, sit alias. Illo neque placeat at 
+                            numquam consequatur deserunt consectetur consequuntur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- LOAD BUTTON -->
+            <div class="flex items-center">
+                <button class="bg-gray-700 hover:bg-gray-800 text-white cursor-pointer font-bold p-3 mx-auto my-5">Load More</button>
+            </div>
+        </main>
+    </content>
+</body>
+</html>
