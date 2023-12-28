@@ -22,7 +22,7 @@
                 </a>
             </logo>
             <mobileicon class="md:hidden">
-                <a @click="mobilenavOpen = ! mobilenavOpen" class="w-12 h-12 flex items-center justify-center bg-gray-500 hover:bg-gray-700 rounded-lg">
+                <a @click="mobilenavOpen = ! mobilenavOpen" class="w-12 h-12 flex items-center justify-center bg-gray-500 hover:bg-gray-700">
                     <img x-show="!mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png" alt="menu"/>
                     <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png" alt="menu"/>
                 </a>
@@ -82,7 +82,7 @@
     <!-- CONTENT -->
     <content x-data="{mobileSidebarOpen: false}" class="grid grid-cols-3 max-w-7xl mx-auto mt-10">
         <mobileSideBarNav class="md:hidden col-span-full mx-auto mb-6 z-10 relative">
-            <a @click="mobileSidebarOpen = ! mobileSidebarOpen" class="flex item-center cursor-pointer select-none font-bold p-3 hover:bg-gray-200 rounded-lg">
+            <a @click="mobileSidebarOpen = ! mobileSidebarOpen" class="flex item-center cursor-pointer select-none font-bold p-3 hover:bg-gray-200">
                 <span>Categories</span>
                 <img x-bind:class="mobileSidebarOpen && 'rotate-180 duration-300' " class="w-4 ml-1.5 pt-1" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="">
             </a>
