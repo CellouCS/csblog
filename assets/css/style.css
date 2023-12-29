@@ -704,8 +704,8 @@ video {
   margin-top: 1rem;
 }
 
-.mt-\[6rem\] {
-  margin-top: 6rem;
+.mt-\[5rem\] {
+  margin-top: 5rem;
 }
 
 .mt-\[8rem\] {
@@ -1240,7 +1240,7 @@ input[type=text], input[type=password], input[type=email] {
   padding: 4px 6px 4px 6px;
 }
 
-input[type=text]:is(:focus, :active), input[type=password]:is(:focus, :active), input[type=email]:is(:focus, :active) {
+:is(input[type=text], input[type=password], input[type=email], textarea) {
   outline: none;
 }
 
@@ -1256,15 +1256,13 @@ blockquote {
   border-left: 4px solid #0002;
 }
 
+/**
 #commentForm input[type=text], textarea {
-  width: 100%;
-  padding: 6px;
-  border: 1px solid #0004;
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #0004;
 }
-
-#commentForm input[type=text]:is(:focus, :active), textarea:is(:focus, :active) {
-  outline: none;
-}
+*/
 
 .odd\:bg-gray-100:nth-child(odd) {
   --tw-bg-opacity: 1;
@@ -1422,4 +1420,3 @@ blockquote {
 .\[\&\>li\>a\]\:justify-end>li>a {
   justify-content: flex-end;
 }
-
