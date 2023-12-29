@@ -544,40 +544,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .absolute {
   position: absolute;
 }
@@ -738,16 +704,12 @@ video {
   margin-top: 1rem;
 }
 
-.mt-\[10rem\] {
-  margin-top: 10rem;
+.mt-\[6rem\] {
+  margin-top: 6rem;
 }
 
 .mt-\[8rem\] {
   margin-top: 8rem;
-}
-
-.-mr-8 {
-  margin-right: -2rem;
 }
 
 .flex {
@@ -840,34 +802,6 @@ video {
 
 .max-w-\[350px\] {
   max-width: 350px;
-}
-
-.max-w-\[300px\] {
-  max-width: 300px;
-}
-
-.max-w-\[0px\] {
-  max-width: 0px;
-}
-
-.max-w-\[20px\] {
-  max-width: 20px;
-}
-
-.max-w-\[270px\] {
-  max-width: 270px;
-}
-
-.max-w-\[px\] {
-  max-width: px;
-}
-
-.max-w-\[2px\] {
-  max-width: 2px;
-}
-
-.max-w-\[280px\] {
-  max-width: 280px;
 }
 
 .-translate-y-10 {
@@ -1078,10 +1012,6 @@ video {
 
 .pl-2 {
   padding-left: 0.5rem;
-}
-
-.pl-6 {
-  padding-left: 1.5rem;
 }
 
 .pt-0 {
@@ -1308,9 +1238,10 @@ input[type=text], input[type=password], input[type=email] {
   border: 1px solid #d1d5db;
   margin-bottom: 8px;
   padding: 4px 6px 4px 6px;
-  &:is(:focus, :active) {
-    outline: none;
-  }
+}
+
+input[type=text]:is(:focus, :active), input[type=password]:is(:focus, :active), input[type=email]:is(:focus, :active) {
+  outline: none;
 }
 
 label {
@@ -1329,10 +1260,10 @@ blockquote {
   width: 100%;
   padding: 6px;
   border: 1px solid #0004;
-  &:is(:focus, :active) {
-    outline: none;
-    border: 2px solid #0004;
-  }
+}
+
+#commentForm input[type=text]:is(:focus, :active), textarea:is(:focus, :active) {
+  outline: none;
 }
 
 .odd\:bg-gray-100:nth-child(odd) {
@@ -1426,22 +1357,6 @@ blockquote {
 
   .md\:w-auto {
     width: auto;
-  }
-
-  .md\:max-w-2xl {
-    max-width: 42rem;
-  }
-
-  .md\:max-w-\[\] {
-    max-width: ;
-  }
-
-  .md\:max-w-\[350\] {
-    max-width: 350;
-  }
-
-  .md\:max-w-\[400\] {
-    max-width: 400;
   }
 
   .md\:max-w-\[400px\] {
