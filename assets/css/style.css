@@ -1233,7 +1233,7 @@ h2 {
     outline: none;
 } */
 
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password], input[type=email], textarea {
   width: 100%;
   border: 1px solid #d1d5db;
   margin-bottom: 8px;
